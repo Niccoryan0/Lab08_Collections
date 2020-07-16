@@ -74,15 +74,14 @@ namespace Lab08_Collections.Classes
         /// <returns>Boolean for if book is in library</returns>
         public bool IsAvailable(Book book)
         {
-            bool result = false;
             foreach (Book libBook in library)
             {
-                if (libBook.Equals(book))
+                if (libBook != null && libBook.Equals(book))
                 {
-                    result = true;
+                    return true;
                 }
             }
-            return result;
+            return false;
         }
 
         /// <summary>
