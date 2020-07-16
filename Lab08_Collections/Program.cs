@@ -68,7 +68,7 @@ namespace Lab08_Collections
             Console.WriteLine("The following books are currently in the library:");
             foreach (Book book in Library)
             {
-                Console.WriteLine($"{book.Title} by {book.Author.FirstName} {book.Author.LastName}");
+                Console.WriteLine($"{book.Title} by {book.Author.FirstName} {book.Author.LastName}, with {book.NumberOfPages} and defined as genre: {book.Genre}");
             }
         }
 
@@ -107,7 +107,7 @@ namespace Lab08_Collections
             }
             string genreString = Console.ReadLine();
             int.TryParse(genreString, out int genreParse);
-            Genre genreChoice = (Genre)genreParse;
+            Genre genreChoice = (Genre)genreParse-1;
             AddBook(title, firstName, lastName, pages, genreChoice);
         }
 
@@ -151,7 +151,7 @@ namespace Lab08_Collections
                     break;
                 }
             }
-            if (borrowed.Equals(default(Book)))
+            if (borrowed == null)
             {
                 Console.WriteLine("Oh noes! Looks like that books not available.");
             }
@@ -167,20 +167,28 @@ namespace Lab08_Collections
         /// </summary>
         static void HandleReturnBook()
         {
+            // Set up temporary book storing Dictionary and counter so they can be displayed below
             Dictionary<int, Book> tempBooks = new Dictionary<int, Book>();
             int counter = 1;
             Console.WriteLine("Which of your books would you like to return:");
             foreach (Book book in BookBag)
             {
+                // Add all bookbag books to temporary dictionary
                 tempBooks.Add(counter, book);
                 Console.WriteLine($"{counter}. {book.Title}");
             }
             string choice = Console.ReadLine();
             int.TryParse(choice, out int userChoice);
-            tempBooks.TryGetValue(userChoice, out Book result);
-            Library.Add(result);
-            BookBag.Remove(result);
-
+            // Check if the user's choice is in the tempBooks, and if so output the book object
+            if (tempBooks.TryGetValue(userChoice, out Book result)){
+                Console.WriteLine($"{result.Title} returned successfully!");
+                Library.Add(result);
+                BookBag.Remove(result);
+            }else
+            {
+                Console.WriteLine("I think there's been an error!");
+            }
+           
         }
 
         /// <summary>

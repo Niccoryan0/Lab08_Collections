@@ -26,7 +26,7 @@ namespace Lab08_Collections.Classes
     }
     public enum Genre
     {
-        Scifi = 1,
+        Scifi,
         Fantasy,
         Nonfiction,
         Instructional,

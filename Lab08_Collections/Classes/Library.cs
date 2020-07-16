@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Lab08_Collections.Classes
 {
@@ -10,6 +11,10 @@ namespace Lab08_Collections.Classes
         Book[] library = new Book[5];
         int count;
 
+        /// <summary>
+        /// Add a book to the library
+        /// </summary>
+        /// <param name="book">Book to be added</param>
         public void Add(Book book)
         {
             if (count == library.Length)
@@ -18,6 +23,7 @@ namespace Lab08_Collections.Classes
             }
             library[count++] = book;
         }
+
         /// <summary>
         /// Remove a given book from the library
         /// </summary>
@@ -52,7 +58,7 @@ namespace Lab08_Collections.Classes
                     }
                 }
             }
-            if (removed.Equals(default(Book)))
+            if (removed == null)
             {
                 Console.WriteLine("It looks like that book isn't in the library!");
             }
@@ -64,11 +70,19 @@ namespace Lab08_Collections.Classes
             return removed;
         }
 
+        /// <summary>
+        /// Get a book count.
+        /// </summary>
+        /// <returns>Number of books</returns>
         public int Count()
         {
             return count;
         }
 
+        /// <summary>
+        /// Makes the library enumerable
+        /// </summary>
+        /// <returns>Enumerator values in library</returns>
         public IEnumerator<Book> GetEnumerator()
         {
             for (int i = 0; i < count; i++)
@@ -77,6 +91,9 @@ namespace Lab08_Collections.Classes
             }
         }
 
+        /// <summary>
+        /// Magic
+        /// </summary>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
