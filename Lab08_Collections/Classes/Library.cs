@@ -31,43 +31,58 @@ namespace Lab08_Collections.Classes
         /// <returns>Removed book</returns>
         public Book Remove(Book book)
         {
-            int removedSize = count - 1;
             int tempCounter = 0;
+            // Make a temporary book array for purposes of indexing it
             Book[] temp;
             Book removed = default(Book);
             if (count < library.Length / 2)
             {
-                temp = new Book[removedSize];
+                temp = new Book[count - 1];
             }
             else
             {
                 temp = new Book[library.Length];
             }
-            for (int i = 0; i < count; i++)
+            if (IsAvailable(book))
             {
-                if (library[i] != null)
+                for (int i = 0; i < count; i++)
                 {
-                    if (library[i].Equals(book))
+                    if (library[i] != null)
                     {
-                        removed = library[i];
-                    }
-                    else
-                    {
-                        temp[tempCounter] = library[i];
-                        tempCounter++;
+                        if (library[i].Equals(book))
+                        {
+                            removed = library[i];
+                        }
+                        else
+                        {
+                            temp[tempCounter] = library[i];
+                            tempCounter++;
+                        }
                     }
                 }
-            }
-            if (removed == null)
-            {
-                Console.WriteLine("It looks like that book isn't in the library!");
-            }
-            else
-            {
+                // Reassign library to temporary
                 library = temp;
                 count--;
             }
             return removed;
+        }
+
+        /// <summary>
+        /// Check if a book is in the library
+        /// </summary>
+        /// <param name="book">The book to search for</param>
+        /// <returns>Boolean for if book is in library</returns>
+        public bool IsAvailable(Book book)
+        {
+            bool result = false;
+            foreach (Book libBook in library)
+            {
+                if (libBook.Equals(book))
+                {
+                    result = true;
+                }
+            }
+            return result;
         }
 
         /// <summary>
