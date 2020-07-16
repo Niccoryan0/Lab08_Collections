@@ -10,6 +10,9 @@ namespace Lab08_Collections
     {
         public static Library<Book> Library { get; set; }
         public static List<Book> BookBag { get; set; }
+        /// <summary>
+        /// Instantiates library, bookbag, loads book and then runs the UI.
+        /// </summary>
         static void Main()
         {
             Library = new Library<Book>();
@@ -19,6 +22,9 @@ namespace Lab08_Collections
             UserInterface();
         }
 
+        /// <summary>
+        /// Runs the UI for the application
+        /// </summary>
         static void UserInterface()
         {
             int choice = 0;
@@ -130,10 +136,15 @@ namespace Lab08_Collections
         /// </summary>
         static void HandleBorrowBook()
         {
+            ViewLibrary();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine("What is the name of the book you'd like to borrow?");
             string title = Console.ReadLine();
             BorrowBook(title);
         }
+
         /// <summary>
         /// Handle logic for borrowing a book
         /// </summary>
@@ -175,7 +186,7 @@ namespace Lab08_Collections
             {
                 // Add all bookbag books to temporary dictionary
                 tempBooks.Add(counter, book);
-                Console.WriteLine($"{counter}. {book.Title}");
+                Console.WriteLine($"{counter++}. {book.Title}");
             }
             string choice = Console.ReadLine();
             int.TryParse(choice, out int userChoice);
@@ -188,7 +199,6 @@ namespace Lab08_Collections
             {
                 Console.WriteLine("I think there's been an error!");
             }
-           
         }
 
         /// <summary>
