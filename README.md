@@ -11,7 +11,7 @@
 Clone this repository to your local machine.
 
 ```
-$ git clone https://github.com/Niccoryan0/Lab08-Collections.git
+$ git clone https://github.com/Niccoryan0/Lab08_Collections.git
 ```
 
 ### To run the program from Visual Studio:
