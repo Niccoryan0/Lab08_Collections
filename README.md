@@ -26,7 +26,14 @@ Then select and open ```Lab08_Collections.sln```
 ---
 
 ### Visuals
-
+#### App start page
+![Start view](assets/CollectionsStart.png)
+#### Viewing all books in library
+![Books view](assets/CollectionsView1.png)
+#### Borrowing a book
+![Borrow view](assets/CollectionsBorrow.png)
+#### Returning a book
+![Return view](assets/CollectionsReturn.png)
 
 ---
 
