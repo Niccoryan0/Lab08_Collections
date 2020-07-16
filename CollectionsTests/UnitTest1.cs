@@ -42,5 +42,42 @@ namespace CollectionsTests
             Assert.Equal(default(Book), removed);
         }
 
+        [Fact]
+        public void GettersAndSettersBooks()
+        {
+            Book book = new Book();
+            book.Title = "Dune";
+            Assert.Equal("Dune", book.Title);
+        }
+
+        [Fact]
+        public void GettersAndSettersAuthor()
+        {
+            Author author = new Author();
+            author.FirstName = "Albert";
+            Assert.Equal("Albert", author.FirstName);
+        }
+
+        [Fact]
+        public void CanCountLibraryBooks()
+        {
+            Library<Book> Library = new Library<Book>();
+            Book book = new Book("The Stranger", "Albert", "Camus", 176, Genre.Other);
+            Book book2 = new Book("Dune", "Frank", "Herbert", 430, Genre.Scifi);
+
+            Library.Add(book);
+            Library.Add(book);
+            Library.Add(book);
+            int count = Library.Count();
+            Assert.Equal(3, count);
+        }
+
+        [Fact]
+        public void CanCountZeroLengthLibrary()
+        {
+            Library<Book> Library = new Library<Book>();
+            int count = Library.Count();
+            Assert.Equal(0, count);
+        }
     }
 }

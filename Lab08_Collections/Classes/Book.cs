@@ -22,6 +22,10 @@ namespace Lab08_Collections.Classes
             NumberOfPages = numberOfPages;
             Genre = genre;
         }
+        public Book()
+        {
+
+        }
 
     }
     public enum Genre
